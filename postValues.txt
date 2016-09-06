@@ -1,0 +1,90 @@
+//quries for inserting documents into posts collection
+
+db.posts.insert(
+{
+	post_title:'My first post',	
+	post_text: 'Hello how are you?',
+	by: 'ObjectId("57c44e00bcc2067534908d75")',
+	tags: [ObjectId("57c44e00bcc2067534908d75")],
+	post_pictures: 'url',
+	likes: [],
+	posted_at:new Date("2016-08-29"),
+	comments: []
+	
+})
+
+
+
+db.posts.insert(
+{
+	post_title:'my second post',	
+	post_text: 'Come over for a party!',
+	by: 'ObjectId("57c44dfebcc2067534908d72")',
+	tags: [],
+	post_pictures: 'url',
+	likes: [],
+	posted_at:new Date("2016-08-27"),
+	comments: [] 
+})
+
+db.posts.insert(
+{
+ "by" : ObjectId("57c44e00bcc2067534908d75"),
+ "comments" : [{
+  "_id": new ObjectId(),
+  "comment_by" : ObjectId("57c44e00bcc2067534908d75"),
+  "message" : "happy world",
+  "likes" : [ObjectId("57c44dfebcc2067534908d72"),ObjectId("57c44e00bcc2067534908d75")]
+  },
+  {
+  "_id": new ObjectId(),
+  "comment_by" : ObjectId("57c44e00bcc2067534908d73"),
+  "message" : "a huge world",
+  "likes" : [ObjectId("57c44dfebcc2067534908d72"),ObjectId("57c44e00bcc2067534908d75")]
+  },
+  {
+  "_id": new ObjectId(),
+  "comment_by" : "ObjectId("57c44e00bcc2067534908d72")",
+  "message" : "a marvel world",
+  "likes" : [ObjectId("57c44dfebcc2067534908d72"),ObjectId("57c44e00bcc2067534908d75")]
+  }],
+ "likes" : [ ],
+ "post_pictures" : "url",
+ "post_text" :" happy bday nitish",
+ "post_title" : "all the best",
+ "posted_at" : new Date("2016-09-27"),
+ "tags" : [ ]
+})
+
+
+
+
+db.mycollection.insert({'foo':[1,2,3,4]})
+> db.mycollection.insert({'foo':[5,6,7]})
+
+> db.mycollection.aggregate({$project: { count: { $size:"$foo" }}})
+{ "_id" : ObjectId("5314b5c360477752b449eedf"), "count" : 4 }
+{ "_id" : ObjectId("5314b5c860477752b449eee0"), "count" : 3 }
+
+
+db.posts.aggregate([
+{$match:{"_id" : ObjectId("57c6e3c3e19475c432c6a139")}},
+{$project: {count:{$sum:"$comments"}}
+]
+)
+db.articles.aggregate(
+    [ { $match : { author : "dave" } } ]
+);
+
+
+
+ db.posts.aggregate([
+{$match:{_id : ObjectId("57c6e3c3e19475c432c6a139")}},
+ {$project: {comments:1}}]
+)
+
+db.posts.aggregate([
+{$project: 
+	{count:{$sum:"$comments"}}
+}]
+)

@@ -1,0 +1,52 @@
+use socials
+
+
+db.collection.users()
+{
+   _id: '',
+   username: '',
+   logged_in: 'false',
+   password: '',   
+   role:'',
+   profile: 
+	{
+	   name: '',
+	   profile_picture: '',
+	   gender: '',
+	   email_id: '',
+	   
+	}
+}
+ 
+
+
+
+
+
+db.collection.posts()
+{
+	_id:'',
+	post_title:'',
+	post_text: '',
+	by: 'user_id',
+	tags: [user1, user2, user3],
+	post_pictures: 'url',
+	likes: [user1, user2, user3],
+	posted_at:new date(),
+	 
+	comments: [	
+	      {
+		 comment_by: user_id,
+		 message: '',
+		 likes: [user1, user2, user3],
+		 commented_at:new date()
+	      },
+	      {
+		 comment_by: user_id,
+		 message: '',
+		 likes: '',
+		 commented_at:new date()
+	      }
+	   ]
+}
+

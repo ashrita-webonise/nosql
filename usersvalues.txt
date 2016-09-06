@@ -1,0 +1,66 @@
+//quries for inserting documents into posts collection
+db.users.insert(
+{
+	username: 'ashrita28',
+	logged_in: 'false',
+	password: '1234',
+	role: 'superadmin',   
+	profile: 
+	{
+	   name: 'ashrita',
+	   profile_picture: '/home/abc.jpg',
+	   gender: 'female',
+	   email_id: 'ash@gmail.com'  
+	}
+}
+)
+
+db.users.insert(
+{
+	username: 'shirish14',
+	logged_in: 'false',
+	password: '5678',
+	role: 'admin',   
+	profile: 
+	{
+	   name: 'shirish',
+	   profile_picture: '/home/def.jpg',
+	   gender: 'male',
+	   email_id: 'shirish@gmail.com'  
+	}
+}
+)
+
+db.users.insert(
+{
+	username: 'shubham17',
+	logged_in: 'false',
+	password: '2468',   
+	role: 'editor',	
+	access_post:[],
+	profile: 
+	{
+	   name: 'shubham',
+	   profile_picture: '/home/ghi.jpg',
+	   gender: 'male',
+	   email_id: 'shubham@gmail.com'  
+	}
+}
+)
+
+
+db.users.insert(
+{
+	username: 'mayuri12',
+	logged_in: 'false',
+	password: '1357',   
+	role: 'user',	
+	profile: 
+	{
+	   name: 'mayuri',
+	   profile_picture: '/home/jkl.jpg',
+	   gender: 'female',
+	   email_id: 'mayuri@gmail.com'  
+	}
+}
+)
