@@ -1,0 +1,101 @@
+//for resetting the id of comments:-
+
+db.posts.update(
+ { _id:ObjectId("57c6e3cfe19475c432c6a13a"),
+  comments:
+   { comment_by: ObjectId("57c44dfebcc2067534908d73"),
+     message: "sorry dude",
+     likes: [ObjectId("57c44dfebcc2067534908d72"),ObjectId("57c44e00bcc2067534908d75")],
+   }
+ }
+ { $set: 
+ { comments:
+   { _id:
+     comment_by: ObjectId("57c44dfebcc2067534908d73"),
+     message: "sorry dude",
+     likes: [ObjectId("57c44dfebcc2067534908d72"),ObjectId("57c44e00bcc2067534908d75")],
+   }
+ }
+ }
+)
+db.posts.update(
+{ _id : ObjectId("57c6e3c3e19475c432c6a139"),
+  comments:
+   { comment_by: ObjectId("57c44dfebcc2067534908d73"),
+     message: "sorry dude",
+     likes: [ObjectId("57c44dfebcc2067534908d72"),ObjectId("57c44e00bcc2067534908d75")],
+   }
+},
+{ $addToSet: {
+ comments:{_id: new OdjectId()}
+}}
+)
+
+***************************************************************************
+
+//for adding a comment
+
+db.posts.update(
+ { _id: ObjectId("57c6e3c3e19475c432c6a139") },
+ { $addToSet: {
+   comments:
+     { 
+       comment_by:ObjectId("57c44e00bcc2067534908d75"),
+       message: "have a great day",
+       likes: [ObjectId("57c44dfebcc2067534908d72"),ObjectId("57c44e00bcc2067534908d75")],
+     }
+   
+  }
+ }
+)
+db.posts.update(
+ { _id: ObjectId("57c6e3c3e19475c432c6a139") },
+ { $addToSet: {
+   comments:
+     { comment_by:ObjectId("57c44e00bcc2067534908d75"),
+       message: "have a great day",
+       likes: [ObjectId("57c44dfebcc2067534908d72"),ObjectId("57c44e00bcc2067534908d75")],
+     }
+   
+  }
+ }
+)
+
+
+***************************************************************************
+
+
+//change a comment message contents
+
+db.posts.update(
+{ _id: ObjectId("57c6e3c3e19475c432c6a139"),
+  "comments.message": "its okay" },
+{ $set: { "comments.$.message" : "yet another comment" } }
+)
+
+
+***************************************************************************
+
+//deleting a comment
+db.posts.update(
+ {_id:ObjectId("57c6e3c3e19475c432c6a139")},
+ {$pull : {"comments" : null}})
+db.posts.update(
+   { _id:ObjectId("57c6e3c3e19475c432c6a139") },
+   { $unset: { comments: ""} }
+)
+
+db.posts.update({_id: ObjectId("57c6e3c3e19475c432c6a139")},
+ {$pull: {comments: "yet another comment"}})
+db.posts.update(
+{_id:ObjectId("57c6e3c3e19475c432c6a139")},
+{$unset : {"comments.3" : 1 }}) 
+
+
+
+db.posts.update(
+{ _id: ObjectId("57c6e3c3e19475c432c6a139"),
+  "comments": "yet another comment" },
+{ $unset: {"comments.2": 1} }
+)
+***************************************************************************
